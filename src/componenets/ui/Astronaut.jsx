@@ -13,8 +13,12 @@ import { useFrame } from '@react-three/fiber'
 
 export function Astronaut(props) {
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/models/tenhun_falling_spaceman_fanart.glb')
+    const modelPath = import.meta.env.BASE_URL + 'models/tenhun_falling_spaceman_fanart.glb'
+
+    const { nodes, materials, animations } = useGLTF(modelPath)
+
   const { actions } = useAnimations(animations, group)
+  
   useEffect(()=>{
     if(animations.length>0){
       actions[animations[0].name ]?.play();
